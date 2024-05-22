@@ -12,7 +12,7 @@ public class app {
     }
     private static void fnt_pacientes(boolean is_activo){
         do{
-            String op_pacientes = JOptionPane.showInputDialog(null, "MENU PACIENTES \n\n1.Registrar \n2. Consultar \n3. Atrás");
+            String op_pacientes = JOptionPane.showInputDialog(null, "MENU PACIENTES \n\n1. Registrar \n2. Consultar \n3. Atrás");
             if (op_pacientes.equals("1")) {
                 boolean sw = false;
                 String id = JOptionPane.showInputDialog(null, "ID");
@@ -47,11 +47,13 @@ public class app {
                 if (sw) {
                     JOptionPane.showMessageDialog(null, "NOMBRE: " + pacientes.get(pos).getNombre_str() +
                                                                         "\nEDAD " + pacientes.get(pos).getEdad_str() +
-                                                                        "\nCONTACTO " + pacientes.get(pos).getEdad_str() +
-                                                                        "\nHISTORIA " + pacientes.get(pos).getEdad_str());
+                                                                        "\nCONTACTO " + pacientes.get(pos).getContacto_str() +
+                                                                        "\nHISTORIA " + pacientes.get(pos).getHistoria_str());
                 }else{
                     JOptionPane.showMessageDialog(null, "Este paciente no se encuentra registrado");
                 }
+            }else if (op_pacientes.equals("3")) {
+                is_activo = false;
             }
         }while(is_activo);
     }
