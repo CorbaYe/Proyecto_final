@@ -44,7 +44,10 @@ public class app {
                 }
             }
             if (sw) {
-                JOptionPane.showMessageDialog(null, pacientes.get(pos).toString());
+                JOptionPane.showMessageDialog(null, "NOMBRE: " + pacientes.get(pos).getNombre_str() +
+                                                                    "\nEDAD " + pacientes.get(pos).getEdad_str() +
+                                                                    "\nCONTACTO " + pacientes.get(pos).getEdad_str() +
+                                                                    "\nHISTORIA " + pacientes.get(pos).getEdad_str());
             }else{
                 JOptionPane.showMessageDialog(null, "Este paciente no se encuentra registrado");
             }
