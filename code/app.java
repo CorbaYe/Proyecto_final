@@ -13,13 +13,41 @@ public class app {
     private static void fnt_pacientes(){
         String op_pacientes = JOptionPane.showInputDialog(null, "MENU PACIENTES \n\n1.Registrar \n2. Consultar \n3. Atrás");
         if (op_pacientes.equals("1")) {
-            String nombre = JOptionPane.showInputDialog(null, "NOMBRE");
+            boolean sw = false;
             String id = JOptionPane.showInputDialog(null, "ID");
-            String edad = JOptionPane.showInputDialog(null, "EDAD");
-            String contacto = JOptionPane.showInputDialog(null, "CONTACTO");
-            String historia = JOptionPane.showInputDialog(null, "HISTORIA");
-            pacientes.add(new cls_pacientes(nombre, id, edad, contacto, historia));
-            JOptionPane.showMessageDialog(null, "Paciente registrado con éxito");
+            for (int i = 0; i < pacientes.size(); i++) {
+                if (pacientes.get(i).getId_str().equals(id)) {
+                    sw = true;
+                    break;
+                }
+            }
+            if (!sw) {
+                String nombre = JOptionPane.showInputDialog(null, "NOMBRE");
+                String edad = JOptionPane.showInputDialog(null, "EDAD");
+                String contacto = JOptionPane.showInputDialog(null, "CONTACTO");
+                String historia = JOptionPane.showInputDialog(null, "HISTORIA");
+                pacientes.add(new cls_pacientes(nombre, id, edad, contacto, historia));
+                JOptionPane.showMessageDialog(null, "Paciente registrado con éxito");   
+            }else{
+                JOptionPane.showMessageDialog(null, "Este paciente ya se encuentra registrado");
+            }
+        }
+        else if (op_pacientes.equals("2")) {
+            boolean sw = false;
+            int pos = 0;
+            String id = JOptionPane.showInputDialog(null, "ID");
+            for (int i = 0; i < pacientes.size(); i++) {
+                if (pacientes.get(i).getId_str().equals(id)) {
+                    sw = true;
+                    pos = i;
+                    break;
+                }
+            }
+            if (sw) {
+                JOptionPane.showMessageDialog(null, pacientes.get(pos).toString());
+            }else{
+                JOptionPane.showMessageDialog(null, "Este paciente no se encuentra registrado");
+            }
         }
     }
     private static void fnt_menu_principal(boolean m){
