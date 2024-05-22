@@ -10,55 +10,57 @@ public class app {
     public static void main(String[] args) {
         fnt_menu_principal(true);
     }
-    private static void fnt_pacientes(){
-        String op_pacientes = JOptionPane.showInputDialog(null, "MENU PACIENTES \n\n1.Registrar \n2. Consultar \n3. Atrás");
-        if (op_pacientes.equals("1")) {
-            boolean sw = false;
-            String id = JOptionPane.showInputDialog(null, "ID");
-            for (int i = 0; i < pacientes.size(); i++) {
-                if (pacientes.get(i).getId_str().equals(id)) {
-                    sw = true;
-                    break;
+    private static void fnt_pacientes(boolean is_activo){
+        do{
+            String op_pacientes = JOptionPane.showInputDialog(null, "MENU PACIENTES \n\n1.Registrar \n2. Consultar \n3. Atrás");
+            if (op_pacientes.equals("1")) {
+                boolean sw = false;
+                String id = JOptionPane.showInputDialog(null, "ID");
+                for (int i = 0; i < pacientes.size(); i++) {
+                    if (pacientes.get(i).getId_str().equals(id)) {
+                        sw = true;
+                        break;
+                    }
+                }
+                if (!sw) {
+                    String nombre = JOptionPane.showInputDialog(null, "NOMBRE");
+                    String edad = JOptionPane.showInputDialog(null, "EDAD");
+                    String contacto = JOptionPane.showInputDialog(null, "CONTACTO");
+                    String historia = JOptionPane.showInputDialog(null, "HISTORIA");
+                    pacientes.add(new cls_pacientes(nombre, id, edad, contacto, historia));
+                    JOptionPane.showMessageDialog(null, "Paciente registrado con éxito");   
+                }else{
+                    JOptionPane.showMessageDialog(null, "Este paciente ya se encuentra registrado");
                 }
             }
-            if (!sw) {
-                String nombre = JOptionPane.showInputDialog(null, "NOMBRE");
-                String edad = JOptionPane.showInputDialog(null, "EDAD");
-                String contacto = JOptionPane.showInputDialog(null, "CONTACTO");
-                String historia = JOptionPane.showInputDialog(null, "HISTORIA");
-                pacientes.add(new cls_pacientes(nombre, id, edad, contacto, historia));
-                JOptionPane.showMessageDialog(null, "Paciente registrado con éxito");   
-            }else{
-                JOptionPane.showMessageDialog(null, "Este paciente ya se encuentra registrado");
-            }
-        }
-        else if (op_pacientes.equals("2")) {
-            boolean sw = false;
-            int pos = 0;
-            String id = JOptionPane.showInputDialog(null, "ID");
-            for (int i = 0; i < pacientes.size(); i++) {
-                if (pacientes.get(i).getId_str().equals(id)) {
-                    sw = true;
-                    pos = i;
-                    break;
+            else if (op_pacientes.equals("2")) {
+                boolean sw = false;
+                int pos = 0;
+                String id = JOptionPane.showInputDialog(null, "ID");
+                for (int i = 0; i < pacientes.size(); i++) {
+                    if (pacientes.get(i).getId_str().equals(id)) {
+                        sw = true;
+                        pos = i;
+                        break;
+                    }
+                }
+                if (sw) {
+                    JOptionPane.showMessageDialog(null, "NOMBRE: " + pacientes.get(pos).getNombre_str() +
+                                                                        "\nEDAD " + pacientes.get(pos).getEdad_str() +
+                                                                        "\nCONTACTO " + pacientes.get(pos).getEdad_str() +
+                                                                        "\nHISTORIA " + pacientes.get(pos).getEdad_str());
+                }else{
+                    JOptionPane.showMessageDialog(null, "Este paciente no se encuentra registrado");
                 }
             }
-            if (sw) {
-                JOptionPane.showMessageDialog(null, "NOMBRE: " + pacientes.get(pos).getNombre_str() +
-                                                                    "\nEDAD " + pacientes.get(pos).getEdad_str() +
-                                                                    "\nCONTACTO " + pacientes.get(pos).getEdad_str() +
-                                                                    "\nHISTORIA " + pacientes.get(pos).getEdad_str());
-            }else{
-                JOptionPane.showMessageDialog(null, "Este paciente no se encuentra registrado");
-            }
-        }
+        }while(is_activo);
     }
     private static void fnt_menu_principal(boolean m){
         do{ 
             String opciones = JOptionPane.showInputDialog(null, "MENU PRINCIPAL \n\n1. Nuevo paciente \n2. Nueva cita \n3. Reporte \n4. Salir");
             switch (opciones) {
                 case "1":
-                    fnt_pacientes();
+                    fnt_pacientes(true);
                     break;
             
                 default:
