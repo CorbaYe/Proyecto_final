@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 public class app {
 
-    LinkedList<cls_pacientes> pacientes = new LinkedList<>();
+    static LinkedList<cls_pacientes> pacientes = new LinkedList<>();
     public static void main(String[] args) {
         fnt_menu_principal(true);
     }
@@ -18,6 +18,8 @@ public class app {
             String edad = JOptionPane.showInputDialog(null, "EDAD");
             String contacto = JOptionPane.showInputDialog(null, "CONTACTO");
             String historia = JOptionPane.showInputDialog(null, "HISTORIA");
+            pacientes.add(new cls_pacientes(nombre, id, edad, contacto, historia));
+            JOptionPane.showMessageDialog(null, "Paciente registrado con éxito");
         }
     }
     private static void fnt_menu_principal(boolean m){
