@@ -62,8 +62,8 @@ public class app {
     private static void fnt_citas_registrar(){
         boolean sw = false;
         String id = JOptionPane.showInputDialog(null, "ID");
-        for (int i = 0; i < citas.size(); i++) {
-            if (citas.get(i).getId_str().equals(id)) {
+        for (int i = 0; i < pacientes.size(); i++) {
+            if (pacientes.get(i).getId_str().equals(id)) {
                 sw = true;
                 break;
             }
@@ -79,7 +79,36 @@ public class app {
         }
     }
 
-    
+    private static void fnt_reporte() {
+        String id = JOptionPane.showInputDialog(null, "ID");
+        boolean sw = false;
+        int pos = 0;
+        for (int i = 0; i < pacientes.size(); i++) {
+            if (pacientes.get(i).getId_str().equals(id)) {
+                sw = true;
+                pos = i;
+                break;
+            }
+        }
+        if (sw) {
+            String pac = "NOMBRE PACIENTE: " + pacientes.get(i).getNombre_str() +
+            "\nCONTACTO " + pacientes.get(i).getContacto_str() + "\n";
+            sw = false;
+            for (int i = 0; i < citas.size(); i++) {
+                if (citas.get(i).getId_str().equals(id)) {
+                    JOptionPane.showMessageDialog(null, "DATOS DEL PACIETE\n" + pac + "FECHA: " + citas.get(i).getFecha_str() + 
+                    "\nHORA " + citas.get(i).getHora_str() +
+                    "\nDETALLES " + citas.get(i).getDet_informacion_str());
+                }
+            }
+            if (!sw) {
+                JOptionPane.showMessageDialog(null, "Este paciente no tiene citas registradas");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Este paciente no se encuentra registrado");
+        }
+        
+    }
 
     private static void fnt_menu_principal(boolean m){
         do{ 
@@ -90,6 +119,10 @@ public class app {
                     break;
                 case "2":
                     fnt_citas_registrar();
+                    break;
+                case "3":
+                    fnt_reporte();
+                    break;
                 case "4":
                     m = false;
                 default:
@@ -97,4 +130,5 @@ public class app {
             }
         }while(m);
     }
+
 }
