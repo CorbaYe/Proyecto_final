@@ -57,6 +57,11 @@ public class app {
             }
         }while(is_activo);
     }
+
+    private void fnt_citas(String id){
+        
+    }
+
     private static void fnt_menu_principal(boolean m){
         do{ 
             String opciones = JOptionPane.showInputDialog(null, "MENU PRINCIPAL \n\n1. Nuevo paciente \n2. Nueva cita \n3. Reporte \n4. Salir");
@@ -64,7 +69,8 @@ public class app {
                 case "1":
                     fnt_pacientes(true);
                     break;
-            
+                case "4":
+                    m = false;
                 default:
                     break;
             }
