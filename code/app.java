@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 public class app {
 
     static LinkedList<cls_pacientes> pacientes = new LinkedList<>();
+    static LinkedList<cls_citas> citas = new LinkedList<>();
     public static void main(String[] args) {
         fnt_menu_principal(true);
     }
@@ -58,9 +59,27 @@ public class app {
         }while(is_activo);
     }
 
-    private void fnt_citas(String id){
-        
+    private static void fnt_citas_registrar(){
+        boolean sw = false;
+        String id = JOptionPane.showInputDialog(null, "ID");
+        for (int i = 0; i < citas.size(); i++) {
+            if (citas.get(i).getId_str().equals(id)) {
+                sw = true;
+                break;
+            }
+        }
+        if (sw) {
+            String fecha = JOptionPane.showInputDialog(null, "FECHA");
+            String hora = JOptionPane.showInputDialog(null, "HORA");
+            String detalle = JOptionPane.showInputDialog(null, "DETALLE");
+            citas.add(new cls_citas(id, fecha, hora, detalle));
+            JOptionPane.showMessageDialog(null, "Cita registrada con éxito");
+        }else{
+            JOptionPane.showMessageDialog(null, "Este paciente no se encuentra registrado");
+        }
     }
+
+    
 
     private static void fnt_menu_principal(boolean m){
         do{ 
@@ -69,6 +88,8 @@ public class app {
                 case "1":
                     fnt_pacientes(true);
                     break;
+                case "2":
+                    fnt_citas_registrar();
                 case "4":
                     m = false;
                 default:
