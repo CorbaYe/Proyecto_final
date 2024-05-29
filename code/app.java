@@ -91,12 +91,12 @@ public class app {
             }
         }
         if (sw) {
-            String pac = "NOMBRE PACIENTE: " + pacientes.get(i).getNombre_str() +
-            "\nCONTACTO " + pacientes.get(i).getContacto_str() + "\n";
+            String pac = "NOMBRE PACIENTE: " + pacientes.get(pos).getNombre_str() +
+            "\nCONTACTO " + pacientes.get(pos).getContacto_str() + "\n";
             sw = false;
             for (int i = 0; i < citas.size(); i++) {
                 if (citas.get(i).getId_str().equals(id)) {
-                    JOptionPane.showMessageDialog(null, "DATOS DEL PACIETE\n" + pac + "FECHA: " + citas.get(i).getFecha_str() + 
+                    JOptionPane.showMessageDialog(null, "DATOS DEL PACIENTE\n" + pac + "FECHA: " + citas.get(i).getFecha_str() + 
                     "\nHORA " + citas.get(i).getHora_str() +
                     "\nDETALLES " + citas.get(i).getDet_informacion_str());
                 }
